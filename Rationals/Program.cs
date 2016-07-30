@@ -4,6 +4,7 @@ namespace Rationals
 {
     internal class Program
     {
+        //Consider extracting this to a different file and outside of other types.
         private struct Rational
         {
             public Rational(int numerator, int denominator)
@@ -12,12 +13,14 @@ namespace Rationals
                 Denominator = denominator == 0 ? 1 : denominator;
             }
 
+            //Should have considered to call the other constructor: Rational(int numerator) : this(numerator, 1) { }
             public Rational(int numerator)
             {
                 Numerator = numerator;
                 Denominator = 1;
             }
 
+            //Why is this private
             private int Numerator { get; set; }
 
             private int Denominator { get; set; }
@@ -71,28 +74,21 @@ namespace Rationals
 
         public static void Main(string[] args)
         {
-            var r0 = new Rational(18);
-            var r1 = new Rational(150, 50);
-            var r2 = new Rational(6, 24);
-            var r3 = r1.Add(r2);
-            var r4 = r1.Mul(r2);
-            var r5 = r0.Add(r2);
+            var num1 = new Rational(1, 2);
+            var num2 = new Rational(1, 2);
 
-            Console.WriteLine($"{r0} + {r2} = {r5} = {r5.Value}");
-            Console.WriteLine($"{r1} + {r0} = {r3} = {r3.Value}");
-            Console.WriteLine($"{r1} * {r2} = {r4} = {r4.Value}");
+            var num3 = num1.Add(num2);
 
-            r0.Reduce();
-            r1.Reduce();
-            r2.Reduce();
-            r3.Reduce();
-            r4.Reduce();
-            r5.Reduce();
+            var num4 = num2.Mul(num2);
 
-            Console.WriteLine("\nReducing the rational equation:\n");
-            Console.WriteLine($"{r0} + {r2} = {r5} = {r5.Value}");
-            Console.WriteLine($"{r1} + {r2} = {r3} = {r3.Value}");
-            Console.WriteLine($"{r1} * {r2} = {r4} = {r4.Value}");
+            var num6 = new Rational(2, 4);
+            var num7 = new Rational(2, 4);
+            num7.Reduce();
+
+
+            Console.WriteLine($"{num1} + {num2} = {num3}");
+            Console.WriteLine($"{num2} * {num2} = {num4}");
+            Console.WriteLine($"{num6} reduced {num7}");
         }
     }
 }
